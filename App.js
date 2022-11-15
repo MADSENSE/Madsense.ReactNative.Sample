@@ -26,6 +26,14 @@ function HomeScreen() {
   );
 }
 
+function ProfileScreen() {
+  return (
+    <View>
+      <Text>Profile screen!</Text>
+    </View>
+  );
+}
+
 function SignInScreen() {
   const [username, setUsername] = React.useState('');
   const [password, setPassword] = React.useState('');
@@ -57,6 +65,13 @@ const prefix = Linking.createURL('/');
 export default function App({ navigation }) {
   const linking = {
     prefixes: [prefix],
+    config: {
+      screens: {
+        Home: "home",
+        Profile: "profile",
+        SignIn: "login"
+      }
+    }
   };
   const [state, dispatch] = React.useReducer(
     (prevState, action) => {
@@ -153,7 +168,10 @@ export default function App({ navigation }) {
             />
           ) : (
             // User is signed in
-            <Stack.Screen name="Home" component={HomeScreen} />
+            <>
+              <Stack.Screen name="Home" component={HomeScreen} />
+              <Stack.Screen name="Profile" component={ProfileScreen} />
+            </>
           )}
         </Stack.Navigator>
       </NavigationContainer>
