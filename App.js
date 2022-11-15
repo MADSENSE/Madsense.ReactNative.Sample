@@ -148,14 +148,15 @@ export default function App({ navigation }) {
     []
   );
 
+  if (state.isLoading) {
+    <Stack.Screen name="Splash" component={SplashScreen} />
+  }
+
   return (
     <AuthContext.Provider value={authContext}>
       <NavigationContainer linking={linking}>
         <Stack.Navigator>
-          {state.isLoading ? (
-            // We haven't finished checking for the token yet
-            <Stack.Screen name="Splash" component={SplashScreen} />
-          ) : state.userToken == null ? (
+          {state.userToken == null ? (
             // No token found, user isn't signed in
             <Stack.Screen
               name="SignIn"
