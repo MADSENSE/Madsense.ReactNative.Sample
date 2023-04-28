@@ -63,6 +63,11 @@ const Stack = createStackNavigator();
 const prefix = Linking.createURL('/');
 
 export default function App({ navigation }) {
+  const initialRoute = Linking.useURL();
+  React.useEffect(() => {
+    console.log("INITIAL ROUTE CHANGED", initialRoute)
+  }, [initialRoute]);
+  
   const linking = {
     prefixes: [prefix],
     config: {
